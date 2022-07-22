@@ -1,16 +1,27 @@
-import React from 'react'
+import React, { useState } from 'react'
+import Axios from 'axios'
 
 export const AddSongs = () => {
+
+  const [name, setName] = useState("");
+
+  const submitSong = () => {
+    Axios.post('http://localhost:3001/insert', {
+      songName: name,
+    }).then(() => {
+      alert("Inserted");
+    });
+  };
+
   return (
     <div className='container'>
-        <div class="mb-3">
-            <label for="exampleFormControlInput1" class="form-label">Email address</label>
-            <input type="email" class="form-control" id="exampleFormControlInput1" placeholder="name@example.com"/>
+        <div className="mb-3">
+            <label htmlFor="exampleFormControlInput1" className="form-label">Song Name</label>
+            <input type="text" className="form-control" id="name" placeholder="Song Name" onChange={(e) => {
+              setName(e.target.value)
+            }}/>
         </div>
-        <div class="mb-3">
-            <label for="exampleFormControlTextarea1" class="form-label">Example textarea</label>
-            <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
-        </div>
+        <button onClick={submitSong}>Submit</button>
     </div>
   )
 }
