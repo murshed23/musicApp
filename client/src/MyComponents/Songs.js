@@ -14,17 +14,17 @@ export const Songs = () => {
     return (
         <div className='container'>
             <table className="table">
-            <thead>
+            <thead className='table-light'>
                 <tr>
-                <th scope="col">#</th>
-                <th scope="col">First</th>
+                <th scope="col">Name</th>
+                <th scope="col">Artwork</th>
                 </tr>
             </thead>
             <tbody>
                 {songList.map((val) => {
                     return <tr key={val.id}>
-                        <th scope="row">{val.id}</th>
-                        <td>{val.name}</td>
+                        <th scope="row">{val.name}</th>
+                        <td ><img className="rounded" width="175px" src={require("../uploads/"+val.artwork)} alt="" /></td>
                     </tr>
                 })}
             </tbody>
