@@ -6,7 +6,7 @@ export const AddSongs = () => {
   const [name, setName] = useState("");
 
   const submitSong = () => {
-    Axios.post('http://localhost:3001/insert', {
+    Axios.post('http://localhost:3001/addSong', {
       songName: name,
     }).then(() => {
       alert("Inserted");

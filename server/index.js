@@ -13,9 +13,16 @@ const db = mysql.createPool({
 
 app.use(cors());
 app.use(express.json());
-app.use(bodyParser.urlencoded({extended: true}))
+app.use(bodyParser.urlencoded({extended: true}));
 
-app.post("/insert", (req, res) => {
+app.get("/songs", (req, res) => {
+  const slctSong = "SELECT * FROM songs";
+  db.query(slctSong, (err, result) => {
+    res.send(result);
+  });
+});
+
+app.post("/addSong", (req, res) => {
 
   const songName = req.body.songName
 
