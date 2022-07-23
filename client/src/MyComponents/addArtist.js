@@ -1,9 +1,32 @@
-import React from 'react'
+import React, { useState } from 'react'
+import Axios from 'axios'
 
-export const addArtist = () => {
+export const AddArtist = () => {
+
+  const [name, setName] = useState("");
+  const [dob, setDob] = useState("");
+
+  const submitArtist = () => {
+    Axios.post('http://localhost:3001/addArtist', {
+        artistName: name,
+        dob: dob
+    }).then(res => 
+      console.log(res)).catch(err => console.log(err));
+  };
+
   return (
-    <div>
-        
+    <div className='container'>
+        <div className="mb-3">
+            <label htmlFor="name" className="form-label">Artist Name</label>
+            <input type="text" className="form-control" id="name" placeholder="Artist Name" onChange={(e) => {
+              setName(e.target.value)
+            }}/>
+            <label htmlFor="dateob" className="form-label">Artist DOB</label>
+            <input type="text" className="form-control" id="dateob" placeholder="Artist DOB" onChange={(e) => {
+              setDob(e.target.value)
+            }}/>
+        </div>
+        <button onClick={submitArtist}>Submit</button>
     </div>
   )
 }

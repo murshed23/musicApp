@@ -40,9 +40,27 @@ app.post('/addSong', upload.single('avatar'), (req, res, error) => {
     }
   });
 
+  app.post('/addArtist', (req, res, error) => {
+    try {
+      const query = "INSERT INTO artists (name, DOB) VALUES ('"+req.body.artistName+"','"+req.body.dob+"')";
+      db.query(query, (err, result) => {
+        console.log(result);
+      });
+    }catch(err) {
+      res.send(400);
+    }
+  });
+
 app.get("/songs", (req, res) => {
   const slctSong = "SELECT * FROM songs";
   db.query(slctSong, (err, result) => {
+    res.send(result);
+  });
+});
+
+app.get("/artists", (req, res) => {
+  const slctArtist = "SELECT * FROM artists";
+  db.query(slctArtist, (err, result) => {
     res.send(result);
   });
 });

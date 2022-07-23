@@ -1,31 +1,30 @@
 import React, { useState, useEffect } from 'react'
 import Axios from 'axios'
 
-export const Songs = () => {
-
-    const [songList, setSongList] = useState([]);
+export const Artists = () => {
+    const [artistList, setArtistList] = useState([]);
     
     useEffect(() => {
-        Axios.get("http://localhost:3001/songs").then((response) => {
-            setSongList(response.data);
+        Axios.get("http://localhost:3001/artists").then((response) => {
+            setArtistList(response.data);
         });
     }, []);
 
     return (
         <div className='container m-5'>
-            <h3>Top 10 Songs</h3>
+            <h3>Top 10 Artists</h3>
             <table className="table table-borderless">
             <thead className='table-light'>
                 <tr>
                 <th scope="col">Name</th>
-                <th scope="col">Artwork</th>
+                <th scope="col">Date of Birth</th>
                 </tr>
             </thead>
             <tbody>
-                {songList.map((val) => {
+                {artistList.map((val) => {
                     return <tr key={val.id}>
                         <th scope="row">{val.name}</th>
-                        <td ><img className="rounded" width="175px" src={require("../uploads/"+val.artwork)} alt="" /></td>
+                        <td >{val.DOB}</td>
                     </tr>
                 })}
             </tbody>
