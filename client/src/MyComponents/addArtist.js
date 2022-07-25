@@ -15,7 +15,8 @@ export const AddArtist = () => {
   };
 
   return (
-    <div className='container'>
+    <div className='container m-5'>
+        <h3>Add a new Artist</h3>
         <div className="mb-3">
             <label htmlFor="name" className="form-label">Artist Name</label>
             <input type="text" className="form-control" id="name" placeholder="Artist Name" onChange={(e) => {
@@ -26,7 +27,7 @@ export const AddArtist = () => {
               setDob(e.target.value)
             }}/>
         </div>
-        <button onClick={submitArtist}>Submit</button>
+        <button type="button" class="btn btn-light" onClick={submitArtist}>Submit</button>
     </div>
   )
 }

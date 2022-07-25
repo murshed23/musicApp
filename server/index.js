@@ -65,6 +65,13 @@ app.get("/artists", (req, res) => {
   });
 });
 
+app.get("/artistsNm", (req, res) => {
+  const slctArtistNm = "SELECT name label, id value FROM artists";
+  db.query(slctArtistNm, (err, result) => {
+    res.send(result);
+  });
+});
+
 app.listen(3001, () => {
     console.log("Runnin... ");
 });
