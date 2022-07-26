@@ -35,6 +35,10 @@ app.post('/addSong', upload.single('avatar'), (req, res, error) => {
       db.query(query, (err, result) => {
         console.log(result);
       });
+      const query2 = "INSERT INTO songartist (songId, artist) VALUES (1,'"+req.file.artist[0]['"value"']+"')";
+      db.query(query2, (err2, result2) => {
+        console.log(result2);
+      });
     }catch(err) {
       res.send(400);
     }
@@ -52,7 +56,7 @@ app.post('/addSong', upload.single('avatar'), (req, res, error) => {
   });
 
 app.get("/songs", (req, res) => {
-  const slctSong = "SELECT * FROM songs";
+  const slctSong = "SELECT * FROM songs JOIN (SELECT id, AVG(rate) avg FROM ratings GROUP BY id) rte ON songs.id=rte.id";
   db.query(slctSong, (err, result) => {
     res.send(result);
   });

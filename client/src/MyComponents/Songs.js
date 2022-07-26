@@ -1,6 +1,4 @@
 import React, { useState, useEffect } from 'react'
-import { BrowserRouter as Route } from "react-router-dom";
-import { ArtName } from "./ArtName";
 import Axios from 'axios'
 
 export const Songs = () => {
@@ -21,19 +19,15 @@ export const Songs = () => {
                 <tr>
                 <th scope="col">Name</th>
                 <th scope="col">Artwork</th>
-                <th scope='col'>Author</th>
+                <th scope='col'>Rating</th>
                 </tr>
             </thead>
             <tbody>
                 {songList.map((val) => {
                     return <tr key={val.id}>
                         <th scope="row">{val.name}</th>
-                        <td ><img className="rounded" width="175px" src={require("../uploads/"+val.artwork)} alt="" /></td>
-                        <td>
-                            <Route path="/arts/:val.id">
-                                <ArtName />
-                            </Route>
-                        </td>
+                        <td ><img className="rounded" width="100px" src={require("../uploads/"+val.artwork)} alt="" /></td>
+                        <td>{val.avg}</td>
                     </tr>
                 })}
             </tbody>
